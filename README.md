@@ -29,19 +29,21 @@ Step 2: Create a docker volume of working directory. $PWD, %cd% is the current d
 For Linux/Mac OS Terminal:
 ```
 export WORK_DIR=$PWD
+export export LICENSE_KEY=Your-License-Key
 docker volume create --driver local --opt type=none --opt device=$WORK_DIR --opt o=bind storm_dft_vol
 ```
 
 For Windows Command Prompt:
 ```
 set WORK_DIR=%cd%
+set LICENSE_KEY=Your-License-Key
 docker volume create --driver local --opt type=none --opt device=%WORK_DIR% --opt o=bind storm_dft_vol
 ```
 
 Step 3: Run Docker Container
 
 ```
-docker run -it -p 8081:8080 -p 5001:5000 --name storm_dft --restart unless-stopped -v storm_dft_vol:/home dgbtechnologies/storm-dft:v1
+docker run -it -p 8081:8080 -p 5001:5000 --name storm_dft --restart unless-stopped -v storm_dft_vol:/home -e LICENSE_KEY=$LICENSE_KEY dgbtechnologies/storm-dft:v1
 ```
 
 Step 4: Open Link 
